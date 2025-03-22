@@ -1,0 +1,35 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f3e5f5; /* Light violet background */
+}
+
+.navbar {
+    background-color: #6a0dad; /* Deep violet */
+}
+
+.navbar a {
+    color: white !important;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #6a0dad; /* Violet border */
+}
+
+.card-title {
+    color: #6a0dad; /* Violet title text */
+}
+
+.btn-primary {
+    background-color: #6a0dad;
+    border-color: #6a0dad;
+}
+
+.btn-primary:hover {
+    background-color: #5a0ca5;
+    border-color: #5a0ca5;
+}
+
+h2, h3, h4 {
+    color: #6a0dad;
+}

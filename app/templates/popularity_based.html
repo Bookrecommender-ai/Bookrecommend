@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Popularity-Based Book Recommendations{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">🔥 Popularity-Based Book Recommendations</h2>
+
+    <!-- Genre Selection Dropdown -->
+    <form method="get" action="{{ url_for('popularity_bp.popularity_based') }}">
+        <div class="input-group mb-3">
+            <select class="form-select" name="genre" onchange="this.form.submit()">
+                <option value="">All Genres</option>
+                {% for genre in genres %}
+                <option value="{{ genre }}" {% if selected_genre == genre %}selected{% endif %}>
+                    {{ genre }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+
+    <!-- Display Popular Books -->
+    <div class="row">
+        {% if popular_books.empty %}
+            <p class="text-center text-muted">⚠️ No popular books found in this genre.</p>
+        {% else %}
+            {% for index, book in popular_books.iterrows() %}
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book['Title'] }}</h5>
+                        <p class="card-text"><strong>Author:</strong> {{ book['Author'] }}</p>
+                        <p class="card-text"><strong>Publisher:</strong> {{ book['Publisher'] }}</p>
+                        <p class="card-text"><strong>Year:</strong> {{ book['Year'] }}</p>
+                        <p class="card-text"><strong>Ratings Count:</strong> {{ book['rating_count'] }}</p>
+                        <a href="{{ url_for('content_bp.view_book', isbn=book['ISBN']) }}" class="btn btn-primary">
+                            View Book
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
